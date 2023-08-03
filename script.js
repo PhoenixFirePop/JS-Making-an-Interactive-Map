@@ -48,7 +48,7 @@ async function getFoursquareBusinesses(business) {
     })
 }
 
-// //onload first version
+//onload first version
 window.onload = async () => {
     const userCoords = await getCoords()
     myMap.userCoords = userCoords
@@ -64,13 +64,13 @@ window.onload = async () => {
 // }
 
 //onclick highlight area clicked - needs work
-var mapClickPopup = L.popup();
-myMap.map.on('click', (e) => {
-    console.log(e);
-    mapClickPopup.setLatLng(e.latlng)
-        .setContent(`<div class="popup" onclick="closeAllPopups()">You clicked the map at:<br>${e.latlng.toString()}</div>`)
-        .openOn(myMap.map);
-});
+// var mapClickPopup = L.popup();
+// myMap.map.on('click', (e) => {
+//     console.log(e);
+//     mapClickPopup.setLatLng(e.latlng)
+//         .setContent(`<div class="popup" onclick="closeAllPopups()">You clicked the map at:<br>${e.latlng.toString()}</div>`)
+//         .openOn(myMap.map);
+// });
 
 
 //bonus - adds pin for user location
