@@ -14,7 +14,7 @@ async function getCoords() {
 }
 
 //leaflet map
-const businessMap = {
+const myMap = {
     map: {},
     userCoords: [48.868672, 2.342130],
     construct: function() {
@@ -37,22 +37,22 @@ async function getFoursquareBusinesses(business) {
         method: 'GET',
         headers: {accept: 'application/json', Authorization: 'fsq3okpTp3S6RmdzueZPU4R7LpIeDvV+FFjtz61gXSJS7ME='}
     };
-
-    let response = await fetch(`https://api.foursquare.com/v3/places/search?query=${business}&ll=${businessMap.userCoords[0]}%2C${businessMap.userCoords[1]}&limit=5`, options)
+    
+    let response = await fetch(`https://api.foursquare.com/v3/places/search?query=${business}&ll=${myMap.userCoords[0]}%2C${myMap.userCoords[1]}&limit=5`, options)
     let jsonResponse = await response.json()
     let businessesResults = jsonResponse.results
     businessesResults.forEach((business) => {
         const marker = L.marker([business.geocodes.main.latitude, business.geocodes.main.longitude])
-
-        marker.addTo(businessMap.map).bindPopup(`<b>${business.name}</b>`)
+        
+        marker.addTo(myMap.map).bindPopup(`<b>${business.name}</b>`)
     })
 }
 
 // //onload first version
 window.onload = async () => {
     const userCoords = await getCoords()
-    businessMap.userCoords = userCoords
-    businessMap.construct()
+    myMap.userCoords = userCoords
+    myMap.construct()
 }
 
 // //instructor provided onload
@@ -65,11 +65,11 @@ window.onload = async () => {
 
 //onclick highlight area clicked - needs work
 var mapClickPopup = L.popup();
-businessMap.map.on('click', (e) => {
+myMap.map.on('click', (e) => {
     console.log(e);
     mapClickPopup.setLatLng(e.latlng)
         .setContent(`<div class="popup" onclick="closeAllPopups()">You clicked the map at:<br>${e.latlng.toString()}</div>`)
-        .openOn(businessMap.map);
+        .openOn(myMap.map);
 });
 
 
