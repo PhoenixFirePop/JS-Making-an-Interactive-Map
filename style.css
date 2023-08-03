@@ -1,0 +1,11 @@
+title {
+    font-size: large;
+}
+body {
+    background-color: rgb(83, 136, 165);
+}
+
+#map {
+    height: 600px;
+    width: 1000px;
+}
